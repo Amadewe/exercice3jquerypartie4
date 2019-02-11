@@ -1,18 +1,18 @@
 $(function(){
-  $('#button').click(function(){
-  var lastName = $('#lastname').val();
-  var firstName = $('#firstname').val();
-  var email = $('#email').val();
-  var phone = $('#phone').val();
-  var regexName = /^[A-Za-z\à\â\ä\é\è\ê\ë\ï\î\ô\ö\ù\û\ü\ÿ\ç\À\Â\Ä\Ç\É\È\Ê\Ë\Î\Ï\Ô\Ö\Ù\Û\Ü\Ÿ -]+$/;
-  var regexEmail = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
-  var regexPhone = /^(0[1-68])(?:[ _.-]?(\d{2})){4}$/;
+  $('#submit').click(function(){
+    var regexName = /^([A-Z]{1}[a-zÀ-ÖØ-öø-ÿ]+)([- ]{1}[A-Z]{1}[a-zÀ-ÖØ-öø-ÿ]+){0,1}$/;
+    var regexphone = /^0[1-9]{1}[0-9]{8}$/;
+    var regexMail = /^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9]+[.]+[a-zA-Z]{2,}$/;
 
+    var firstName = $('#firstName').val();
+    var lastName = $('#lastName').val();
+    var mail = $('#mail').val();
+    var phoneNumber = $('#phoneNumber').val();
 
-  if ((regexName.test(lastName) == true) && (regexName.test(firstName) == true) && (regexEmail.test(email) == true) && (regexPhone.test(phone) == true)){
-    alert('tout est bon');
-  } else {
-    alert('Vous avez une erreur');
-  }
-});
+    if (lastName.match(regexName) && firstName.match(regexName) && mail.match(regexMail) && phoneNumber.match(regexphone)){
+      $('#displayInfo').html('Firstname : ' + firstName + '<br>Lastname : ' + lastName + '<br>Mail : ' + mail + '<br>Phone number : ' + phoneNumber);
+    } else{
+      alert('Veuillez entrer des données valides');
+    }
+  });
 });
